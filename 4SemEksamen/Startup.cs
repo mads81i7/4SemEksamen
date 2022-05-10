@@ -32,6 +32,7 @@ namespace _4SemEksamen
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "_4SemEksamen", Version = "v1" });
             });
+            services.AddCors(options => options.AddDefaultPolicy(builder => builder.AllowAnyOrigin()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +48,8 @@ namespace _4SemEksamen
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
