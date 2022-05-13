@@ -32,7 +32,13 @@ namespace _4SemEksamen
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "_4SemEksamen", Version = "v1" });
             });
-            services.AddCors(options => options.AddDefaultPolicy(builder => builder.AllowAnyOrigin()));
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder => builder.WithOrigins("http://127.0.0.1:5501"));
+                options.AddPolicy("policy", builder => builder.WithOrigins("http://127.0.0.1:5500"));
+            }
+            );
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,7 +61,7 @@ namespace _4SemEksamen
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().RequireCors("policy");
             });
         }
     }
