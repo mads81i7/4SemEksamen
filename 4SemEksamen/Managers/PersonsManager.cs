@@ -40,7 +40,7 @@ namespace _4SemEksamen.Managers
 
         public void Delete(int id)
         {
-            Person person = GetById(_nextId);
+            Person person = GetById(id);
             _persons.Remove(person);
         }
     }

@@ -34,11 +34,10 @@ namespace _4SemEksamen
             });
             services.AddCors(options =>
             {
-                options.AddDefaultPolicy(builder => builder.WithOrigins("http://127.0.0.1:5501"));
-                options.AddPolicy("policy", builder => builder.WithOrigins("http://127.0.0.1:5500"));
+                options.AddPolicy("policy", builder => builder.WithOrigins("http://127.0.0.1:5500").WithMethods("GET", "POST").WithHeaders("Content-Type"));
             }
             );
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,13 +54,13 @@ namespace _4SemEksamen
 
             app.UseRouting();
 
-            app.UseCors();
+            app.UseCors("policy");
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers().RequireCors("policy");
+                endpoints.MapControllers();
             });
         }
     }

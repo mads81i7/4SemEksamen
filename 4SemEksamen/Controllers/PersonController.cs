@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using _4SemEksamen.Models;
 using _4SemEksamen.Managers;
+using Microsoft.AspNetCore.Cors;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,6 +20,7 @@ namespace _4SemEksamen.Controllers
         }
 
         // GET: api/<PersonController>
+        [EnableCors("policy")]
         [HttpGet]
         public IEnumerable<Person> Get()
         {
@@ -33,6 +35,7 @@ namespace _4SemEksamen.Controllers
         }
 
         // POST api/<PersonController>
+        [EnableCors("policy")]
         [HttpPost]
         public void Post([FromBody] Person value)
         {
@@ -47,6 +50,7 @@ namespace _4SemEksamen.Controllers
         }
 
         // DELETE api/<PersonController>/5
+        [EnableCors("policy")]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
