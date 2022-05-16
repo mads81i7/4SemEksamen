@@ -34,7 +34,7 @@ namespace _4SemEksamen
             });
             services.AddCors(options =>
             {
-                options.AddPolicy("policy", builder => builder.WithOrigins("http://127.0.0.1:5500").WithMethods("GET", "POST").WithHeaders("Content-Type"));
+                options.AddPolicy("policy", builder => builder.WithOrigins("https://4-sem-frontend-test.azurewebsites.net").WithMethods("GET", "POST").WithHeaders("Content-Type"));
             }
             );
 
