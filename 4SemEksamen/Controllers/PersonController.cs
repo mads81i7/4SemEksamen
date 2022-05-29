@@ -22,12 +22,13 @@ namespace _4SemEksamen.Controllers
         // GET: api/<PersonController>
         [EnableCors("policy")]
         [HttpGet]
-        public IEnumerable<Person> Get()
+        public ActionResult<IEnumerable<Person>> Get()
         {
             return Manager.GetAll();
         }
 
         // GET api/<PersonController>/5
+        [EnableCors("policy")]
         [HttpGet("{id}")]
         public Person Get(int id)
         {
@@ -43,6 +44,7 @@ namespace _4SemEksamen.Controllers
         }
 
         // PUT api/<PersonController>/5
+        [EnableCors("allMethods")]
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Person value)
         {
@@ -50,7 +52,7 @@ namespace _4SemEksamen.Controllers
         }
 
         // DELETE api/<PersonController>/5
-        [EnableCors("policy")]
+        [EnableCors("allMethods")]
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

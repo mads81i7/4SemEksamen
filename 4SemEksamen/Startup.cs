@@ -1,7 +1,9 @@
+using _4SemEksamen.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,15 +30,27 @@ namespace _4SemEksamen
         {
 
             services.AddControllers();
+            services.AddDbContext<UserContext>(opt => opt.UseSqlServer(Secrets.ConnectionString));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "_4SemEksamen", Version = "v1" });
             });
             services.AddCors(options =>
             {
-                options.AddPolicy("policy", builder => builder.WithOrigins("https://4-sem-frontend-test.azurewebsites.net").WithMethods("GET", "POST").WithHeaders("Content-Type"));
+                options.AddPolicy("policy", builder => builder
+                .WithOrigins("https://4-sem-frontend-test.azurewebsites.net", 
+                             "https://4-sem-frontend.azurewebsites.net", "http://127.0.0.1:5501")
+                .WithMethods("GET", "POST")
+                .WithHeaders("Content-Type"));
             }
             );
+            services.AddCors(options =>
+            {
+                options.AddPolicy("allMethods", builder => builder
+                .WithOrigins("https://4-sem-frontend.azurewebsites.net", "http://127.0.0.1:5501")
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+            });
 
         }
 
@@ -54,7 +68,7 @@ namespace _4SemEksamen
 
             app.UseRouting();
 
-            app.UseCors("policy");
+            app.UseCors();
 
             app.UseAuthorization();
 
