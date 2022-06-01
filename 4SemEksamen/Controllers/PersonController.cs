@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using _4SemEksamen.Models;
 using _4SemEksamen.Managers;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace _4SemEksamen.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class PersonController : ControllerBase
