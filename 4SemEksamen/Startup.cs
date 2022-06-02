@@ -52,7 +52,8 @@ namespace _4SemEksamen
                 options.AddPolicy("allMethods", builder => builder
                 .WithOrigins("https://4-sem-frontend.azurewebsites.net", "http://127.0.0.1:5501")
                 .AllowAnyMethod()
-                .AllowAnyHeader());
+                .AllowAnyHeader()
+                .AllowCredentials());
             });
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {

@@ -22,7 +22,7 @@ namespace _4SemEksamen.Controllers
         }
 
         // GET: api/<PersonController>
-        [EnableCors("policy")]
+        [EnableCors("allMethods")]
         [HttpGet]
         public ActionResult<IEnumerable<Person>> Get()
         {
@@ -38,7 +38,7 @@ namespace _4SemEksamen.Controllers
         }
 
         // POST api/<PersonController>
-        [EnableCors("policy")]
+        [EnableCors("allMethods")]
         [HttpPost]
         public void Post([FromBody] Person value)
         {

@@ -1,4 +1,5 @@
 ﻿using _4SemEksamen.Models;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 namespace _4SemEksamen.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("allMethods")]
     [ApiController]
     public class JWTController : ControllerBase
     {
