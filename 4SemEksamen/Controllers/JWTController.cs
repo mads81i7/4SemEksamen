@@ -39,7 +39,7 @@ namespace _4SemEksamen.Controllers
                     new Claim(JwtRegisteredClaimNames.Sub, _config["JWT:Subject"]),
                     new Claim("UserId", user.UserId.ToString()),
                     new Claim("UserName", user.UserName),
-                    new Claim("UserType", user.Admin.ToString())
+                    new Claim("Admin", user.Admin.ToString())
                 };
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Key"]));
@@ -48,10 +48,8 @@ namespace _4SemEksamen.Controllers
                     _config["JWT:Issuer"],
                     _config["JWT:Audience"],
                     claims,
-                    expires: DateTime.UtcNow.AddMinutes(15),
+                    expires: DateTime.UtcNow.AddMinutes(1),
                     signingCredentials: signIn);
-
-                //RETURN TO HERE
 
                 return Ok(new JwtSecurityTokenHandler().WriteToken(token));
             }
@@ -59,8 +57,6 @@ namespace _4SemEksamen.Controllers
             {
                 return BadRequest();
             }
-
-            
         }
         private User GetUserByLogin(string userName, string password)
         {

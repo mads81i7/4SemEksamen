@@ -63,6 +63,7 @@ namespace _4SemEksamen
                 {
                     ValidateIssuer = true,
                     ValidateAudience = true,
+                    ClockSkew = TimeSpan.Zero,
                     ValidAudience = Configuration["JWT:Audience"],
                     ValidIssuer = Configuration["JWT:Issuer"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Key"]))
