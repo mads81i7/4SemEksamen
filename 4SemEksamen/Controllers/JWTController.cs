@@ -35,11 +35,10 @@ namespace _4SemEksamen.Controllers
             {
                 var claims = new[]
                 {
-                    new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
+                    new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToLongDateString()),
                     new Claim(JwtRegisteredClaimNames.Sub, _config["JWT:Subject"]),
                     new Claim("UserId", user.UserId.ToString()),
-                    new Claim("UserName", user.UserName),
-                    new Claim("Admin", user.Admin.ToString())
+                    new Claim("UserName", user.UserName)
                 };
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Key"]));

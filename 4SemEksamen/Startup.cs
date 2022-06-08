@@ -52,13 +52,10 @@ namespace _4SemEksamen
                 options.AddPolicy("allMethods", builder => builder
                 .WithOrigins("https://4-sem-frontend.azurewebsites.net", "http://127.0.0.1:5501")
                 .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials());
+                .AllowAnyHeader());
             });
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
-                options.RequireHttpsMetadata = false;
-                options.SaveToken = true;
                 options.TokenValidationParameters = new TokenValidationParameters()
                 {
                     ValidateIssuer = true,
